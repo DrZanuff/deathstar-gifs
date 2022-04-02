@@ -5,9 +5,56 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(22, 22, 22);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+@font-face {
+  font-family: Roboto;
+  src: local('Roboto'),
+    url(./fonts/Roboto/Roboto-Regular.ttf) format('truetype');
+  /* other formats include: 'woff2', 'truetype, 'opentype',
+                            'embedded-opentype', and 'svg' */
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Roboto;
+  src: local('Roboto'), url(./fonts/Roboto/Roboto-Bold.ttf) format('truetype');
+  /* other formats include: 'woff2', 'truetype, 'opentype',
+                            'embedded-opentype', and 'svg' */
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Roboto;
+  src: local('Roboto'), url(./fonts/Roboto/Roboto-Light.ttf) format('truetype');
+  /* other formats include: 'woff2', 'truetype, 'opentype',
+                            'embedded-opentype', and 'svg' */
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: StarJedi;
+  src: local('StarJedi'), url(./fonts/StarJedi/Starjedi.ttf) format('truetype');
+  /* other formats include: 'woff2', 'truetype, 'opentype',
+                            'embedded-opentype', and 'svg' */
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: StarJedi;
+  src: local('StarJedi'), url(./fonts/StarJedi/Starjhol.ttf) format('truetype');
+  /* other formats include: 'woff2', 'truetype, 'opentype',
+                            'embedded-opentype', and 'svg' */
+  font-weight: 300;
+  font-style: normal;
 }
