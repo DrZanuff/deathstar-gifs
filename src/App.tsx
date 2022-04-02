@@ -1,7 +1,14 @@
 import { Header } from './components/Header'
-import * as S from './styles'
+import { InfiniteScroll } from './components/InfiniteScroll'
+import { FavoriteScroll } from './components/FavoritesScroll'
+import { GiphyAttribution } from './components/GiphyAttribution'
+import { useRecoilValue } from 'recoil'
+import { currentPageState } from './atoms'
+import * as S from './styles/styles'
 
 function App() {
+  const currentPage = useRecoilValue(currentPageState)
+
   return (
     <>
       <S.Background isMobile={false}>
@@ -12,6 +19,9 @@ function App() {
       </S.Background>
       <S.Body>
         <Header />
+        {currentPage === 'favorites' && <FavoriteScroll />}
+        {currentPage === 'search' && <InfiniteScroll />}
+        <GiphyAttribution />
       </S.Body>
     </>
   )

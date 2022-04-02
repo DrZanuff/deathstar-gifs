@@ -29,7 +29,7 @@ export const Body = styled.div`
   width: 100%;
   height: 100vh;
   margin: 0 auto;
-  max-width: 1200px;
+  max-width: 1000px;
   z-index: 1;
   /* border: 1px solid red; */
 `
