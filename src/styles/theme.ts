@@ -5,7 +5,8 @@ const theme = {
     WHITE: '#FFFFFF',
     BG: '#0A0722',
     BG_LIGHT: '#3B384E',
-    BG_DARK: '#070417'
+    BG_DARK: '#070417',
+    BG_OPACITY: '#1F1944BD'
   }
 }
 

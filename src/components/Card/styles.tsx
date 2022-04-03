@@ -1,10 +1,16 @@
 import styled from 'styled-components'
 
-export const CardContainer = styled.div`
+interface CardContainerProps {
+  height: number
+}
+
+export const CardContainer = styled.div<CardContainerProps>`
   display: flex;
   width: 200px;
+  min-height: ${({ height }) => height - 20}px;
   min-width: 100px;
   max-width: 200px;
+  background-color: ${({ theme }) => theme.colors.BG_OPACITY};
 
   cursor: pointer;
 

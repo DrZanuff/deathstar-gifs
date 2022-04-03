@@ -26,3 +26,8 @@ export const currentSearchResults = atom({
   key: 'currentSearchResults',
   default: initialSearchData
 })
+
+export const currentSearchText = atom({
+  key: 'currentSearchText',
+  default: ''
+})
