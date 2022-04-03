@@ -4,6 +4,7 @@ import { FavoriteScroll } from './components/FavoritesScroll'
 import { GiphyAttribution } from './components/GiphyAttribution'
 import { useRecoilValue } from 'recoil'
 import { currentPageState } from './atoms'
+import { api } from './api'
 import * as S from './styles/styles'
 
 function App() {

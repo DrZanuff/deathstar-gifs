@@ -1,8 +1,32 @@
-import { Card, TextField, Button } from '@mui/material'
+import { useState, useCallback } from 'react'
+import { Card, TextField } from '@mui/material'
+import { useRecoilState, useSetRecoilState } from 'recoil'
+import { querySearchOffset, currentSearchResults } from '../../../../atoms'
+import { getSearch } from '../../../../api'
+import { LoadingButton } from '@mui/lab'
 import { Search } from '@mui/icons-material'
 import * as S from './styles'
 
 export function SearchBar() {
+  const setCurrentSearchResults = useSetRecoilState(currentSearchResults)
+  const [offset, setOffset] = useRecoilState(querySearchOffset)
+  const [searchText, setSearchText] = useState('')
+  const [isSearching, setIsSearching] = useState(false)
+
+  const handleSearch = useCallback(async () => {
+    setIsSearching(true)
+    const response = await getSearch(searchText, offset)
+    setCurrentSearchResults(response.responseObj)
+    // console.log(response)
+    setOffset((prev) => prev + 1)
+    setIsSearching(false)
+  }, [searchText, offset])
+
+  const handleSearchText = useCallback((text: string) => {
+    setSearchText(text)
+    setOffset(0)
+  }, [])
+
   return (
     <S.SearchBarContainer>
       <Card
@@ -18,10 +42,18 @@ export function SearchBar() {
           size="small"
           placeholder="Search..."
           sx={{ width: '100%' }}
+          value={searchText}
+          onChange={(e) => handleSearchText(e.target.value)}
         />
-        <Button variant="contained" endIcon={<Search />}>
+        <LoadingButton
+          variant="contained"
+          endIcon={<Search />}
+          disabled={searchText === ''}
+          loading={isSearching}
+          onClick={handleSearch}
+        >
           Find
-        </Button>
+        </LoadingButton>
       </Card>
     </S.SearchBarContainer>
   )
