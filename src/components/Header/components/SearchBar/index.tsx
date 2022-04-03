@@ -13,6 +13,7 @@ import { getSearch } from '../../../../api'
 import { LoadingButton } from '@mui/lab'
 import { Search } from '@mui/icons-material'
 import * as S from './styles'
+import { height } from '@mui/system'
 
 export function SearchBar() {
   const setCurrentSearchResults = useSetRecoilState(currentSearchResults)
@@ -85,6 +86,7 @@ export function SearchBar() {
         <LoadingButton
           variant="contained"
           color="secondary"
+          sx={{ height: '90%' }}
           endIcon={<Search />}
           disabled={searchText === ''}
           loading={isSearching}

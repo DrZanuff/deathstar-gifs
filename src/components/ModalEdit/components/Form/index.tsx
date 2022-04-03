@@ -111,7 +111,7 @@ export function Form() {
           <Button
             variant="contained"
             size="small"
-            disabled={title === '' || description === ''}
+            disabled={title === ''}
             onClick={handleSaveClick}
           >
             Save

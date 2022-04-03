@@ -67,7 +67,7 @@ export function InfiniteScroll() {
     <S.InfiniteScrollContainer id="inifinite-scroll">
       <Box
         sx={{
-          width: [220, 440, 650, 800, 1200],
+          width: [390, 440, 650, 800, 1200],
           height: '100%',
           bottom: '0px',
           overflowY: 'auto',

@@ -17,15 +17,18 @@ export function Header() {
 
   return (
     <S.HeadnerContainer>
-      <Logo />
-      <S.HeaderTitleContainer>
-        <h1>Deathstar Gifs</h1>
-        <h2>your place for the best Gifs in all the Galaxies</h2>
-      </S.HeaderTitleContainer>
+      <div id="logo-title">
+        <Logo />
+        <S.HeaderTitleContainer>
+          <h1>Deathstar Gifs</h1>
+          <h2>your place for the best Gifs in all the Galaxies</h2>
+        </S.HeaderTitleContainer>
+      </div>
       <SearchBar />
       <Button
         color="error"
         size="large"
+        sx={{ width: ['95%', 'initial'] }}
         variant={currentPage === 'favorites' ? 'contained' : 'outlined'}
         startIcon={<Favorite />}
         onClick={handleClickFavorite}

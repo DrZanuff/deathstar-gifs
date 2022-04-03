@@ -12,6 +12,10 @@ export const ModalEditBackground = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 1024px) {
+    padding: 10px;
+  }
 `
 
 export const ModalContainer = styled.div`
@@ -19,6 +23,10 @@ export const ModalContainer = styled.div`
   width: 100%;
   gap: 20px;
   position: relative;
+
+  @media (max-width: 1024px) {
+    flex-direction: column;
+  }
 `
 
 export const ImageContainer = styled.div`
@@ -49,6 +57,12 @@ export const ImageContainer = styled.div`
     border-radius: 5px;
     max-height: calc(70vh - 50px);
     z-index: 2;
+  }
+
+  @media (max-width: 1024px) {
+    img {
+      max-height: 250px;
+    }
   }
 `
 export const ProgressContainer = styled.div`

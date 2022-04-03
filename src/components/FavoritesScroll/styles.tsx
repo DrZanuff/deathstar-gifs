@@ -11,4 +11,15 @@ export const FavoritesScrollContainer = styled.div`
   > .MuiBox-root {
     ${ScrollBars}
   }
+
+  @media (max-width: 1024px) {
+    max-height: calc(100vh - 250px);
+
+    > .MuiBox-root {
+      margin-top: 10px;
+      .MuiMasonry-root {
+        align-content: center;
+      }
+    }
+  }
 `
