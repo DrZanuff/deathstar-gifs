@@ -79,7 +79,7 @@ export function InfiniteScroll() {
       >
         <Masonry columns={4} spacing={2}>
           {currentSearch.data.map((gif) => (
-            <Card key={gif.id} {...gif} renderIcon={false} />
+            <Card key={gif.id} gif={gif} renderIcon={false} />
           ))}
           {currentSearch.data.length > 0 &&
             skeletons.map((skeleton, index) => (

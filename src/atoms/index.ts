@@ -1,5 +1,5 @@
 import { atom } from 'recoil'
-import type { Response } from '../api/types'
+import type { Response, Gif } from '../api/types'
 
 type pages = 'favorites' | 'search'
 
@@ -30,4 +30,39 @@ export const currentSearchResults = atom({
 export const currentSearchText = atom({
   key: 'currentSearchText',
   default: ''
+})
+
+export const modalEditState = atom({
+  key: 'modalEditState',
+  default: false
+})
+
+export const initiaGif = {
+  id: '',
+  title: '',
+  username: '',
+  url: '',
+  bitly_gif_url: '',
+  bitly_url: '',
+  slug: '',
+  description: '',
+  images: {
+    original: {
+      height: '200',
+      width: '200',
+      url: '',
+      webp: ''
+    },
+    fixed_width: {
+      height: '200',
+      width: '200',
+      url: '',
+      webp: ''
+    }
+  }
+} as Gif
+
+export const currentGif = atom({
+  key: 'currentGif',
+  default: initiaGif
 })

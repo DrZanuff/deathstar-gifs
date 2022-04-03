@@ -1,25 +1,39 @@
-import { memo } from 'react'
+import { memo, useCallback } from 'react'
+import { useSetRecoilState } from 'recoil'
+import { currentGif, modalEditState } from '../../atoms'
 import { ImageListItem, ImageListItemBar, IconButton } from '@mui/material'
-import { Favorite, FavoriteBorder } from '@mui/icons-material'
+import { FavoriteBorder } from '@mui/icons-material'
 import type { Gif } from '../../api/types'
 import * as S from './styles'
 
-interface CardProps extends Gif {
+interface CardProps {
   renderIcon: boolean
+  gif: Gif
 }
 
-function Card({ username, title, images, renderIcon }: CardProps) {
+function Card({ gif, renderIcon }: CardProps) {
+  const setCurrentGif = useSetRecoilState(currentGif)
+  const setModalOpen = useSetRecoilState(modalEditState)
+
+  const handleCardClick = useCallback(() => {
+    setCurrentGif(gif)
+    setModalOpen(true)
+  }, [])
+
   return (
-    <S.CardContainer height={Number(images.fixed_width.height)}>
+    <S.CardContainer
+      height={Number(gif.images.fixed_width.height)}
+      onClick={handleCardClick}
+    >
       <ImageListItem>
-        <img src={images.fixed_width.url} alt={title} />
+        <img src={gif.images.fixed_width.url} alt={gif.title} />
         <ImageListItemBar
-          title={title}
-          subtitle={username}
+          title={gif.title}
+          subtitle={gif.username}
           actionIcon={
             renderIcon === true ? (
               <IconButton
-                aria-label={`favorite ${title}`}
+                aria-label={`favorite ${gif.title}`}
                 sx={{ color: '#F44336' }}
               >
                 <FavoriteBorder />

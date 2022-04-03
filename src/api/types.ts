@@ -13,6 +13,7 @@ export interface Gif {
   bitly_url: string
   username: string
   title: string
+  description?: string
   images: {
     original: ImageGif
     fixed_width: ImageGif
