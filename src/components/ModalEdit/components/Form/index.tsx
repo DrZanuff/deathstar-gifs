@@ -55,6 +55,11 @@ export function Form() {
     toast.success('GIF Deleted!')
   }, [gif, favorites])
 
+  const handleCopy = useCallback(() => {
+    navigator.clipboard.writeText(gif.images.original.webp)
+    toast.success('GIF URL copied!')
+  }, [gif])
+
   return (
     <S.FieldsContainer>
       <Stack direction="row" spacing={1} sx={{ width: '100%' }}>
@@ -66,7 +71,7 @@ export function Form() {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
-        <IconButton color="error">
+        <IconButton color="error" onClick={handleCopy}>
           <Share />
         </IconButton>
       </Stack>

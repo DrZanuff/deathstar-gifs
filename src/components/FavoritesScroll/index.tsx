@@ -21,7 +21,7 @@ export function FavoriteScroll() {
           overflowX: 'hidden'
         }}
       >
-        <Masonry columns={4} spacing={2}>
+        <Masonry columns={4} spacing={2} sx={{ alignContent: 'flex-start' }}>
           {Object.values(favorites).map((gif) => (
             <Card key={gif.id} gif={gif} editMode />
           ))}

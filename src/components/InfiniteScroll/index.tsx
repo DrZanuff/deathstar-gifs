@@ -52,8 +52,6 @@ export function InfiniteScroll() {
     generateSkeletons(10)
     const response = await getSearch(searchText, offset)
 
-    // const newSearch = [...currentSearch.data, ...response.responseObj.data]
-
     setCurrentSearch((prev) => {
       return {
         pagination: response.responseObj.pagination,
@@ -77,11 +75,13 @@ export function InfiniteScroll() {
         }}
         onScroll={handleScroll}
       >
-        <Masonry columns={4} spacing={2}>
+        <Masonry columns={4} spacing={2} sx={{ alignContent: 'flex-start' }}>
           {currentSearch.data.map((gif) => (
             <Card key={gif.id} gif={gif} editMode={false} />
           ))}
           {currentSearch.data.length > 0 &&
+            currentSearch.pagination.total_count - 25 >
+              currentSearch.data.length &&
             skeletons.map((skeleton, index) => (
               <CardTemplate height={skeleton} key={index} />
             ))}
