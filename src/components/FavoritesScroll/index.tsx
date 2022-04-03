@@ -14,14 +14,18 @@ export function FavoriteScroll() {
     <S.FavoritesScrollContainer>
       <Box
         sx={{
-          width: [390, 440, 650, 800, 1200],
+          width: [390, 440, 650, 800, 1000],
           height: '100%',
           bottom: '0px',
           overflowY: 'auto',
           overflowX: 'hidden'
         }}
       >
-        <Masonry columns={4} spacing={2} sx={{ alignContent: 'flex-start' }}>
+        <Masonry
+          columns={[3, 3, 3, 4, 5]}
+          spacing={2}
+          sx={{ alignContent: 'flex-start' }}
+        >
           {Object.values(favorites).map((gif) => (
             <Card key={gif.id} gif={gif} editMode />
           ))}

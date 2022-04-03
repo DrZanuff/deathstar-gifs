@@ -16,6 +16,8 @@ export const InfiniteScrollContainer = styled.div`
     max-height: calc(100vh - 250px);
 
     > .MuiBox-root {
+      justify-content: center;
+      display: flex;
       margin-top: 10px;
       .MuiMasonry-root {
         align-content: center;
