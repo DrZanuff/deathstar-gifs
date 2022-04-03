@@ -44,7 +44,7 @@ export function InfiniteScroll() {
         handleSearch()
       }
     },
-    [isLoading, currentSearch]
+    [isLoading, currentSearch, searchText, offset]
   )
 
   const handleSearch = useCallback(async () => {
@@ -52,21 +52,21 @@ export function InfiniteScroll() {
     generateSkeletons(10)
     const response = await getSearch(searchText, offset)
 
-    const newSearch = [...currentSearch.data, ...response.responseObj.data]
+    // const newSearch = [...currentSearch.data, ...response.responseObj.data]
 
-    setCurrentSearch({
-      pagination: response.responseObj.pagination,
-      data: newSearch
+    setCurrentSearch((prev) => {
+      return {
+        pagination: response.responseObj.pagination,
+        data: [...prev.data, ...response.responseObj.data]
+      }
     })
 
     setOffset((prev) => prev + 1)
     setIsLoading(false)
-  }, [offset, currentSearch])
-
-  console.log('FROM INIFINITE SCROLL', currentSearch)
+  }, [offset, currentSearch, searchText])
 
   return (
-    <S.InfiniteScrollContainer>
+    <S.InfiniteScrollContainer id="inifinite-scroll">
       <Box
         sx={{
           width: [220, 440, 650, 800, 1200],

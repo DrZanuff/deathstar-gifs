@@ -1,6 +1,11 @@
 import { useCallback } from 'react'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
-import { currentGif, modalEditState } from '../../../../atoms'
+import { useRecoilValue, useSetRecoilState, useRecoilState } from 'recoil'
+import {
+  currentGif,
+  modalEditState,
+  currentEditDescription,
+  currentEditTitle
+} from '../../../../atoms'
 import { TextField, Stack, IconButton, Button } from '@mui/material'
 import { Share } from '@mui/icons-material'
 import * as S from './styles'
@@ -8,8 +13,8 @@ import * as S from './styles'
 export function Form() {
   const gif = useRecoilValue(currentGif)
   const setIsModalOpen = useSetRecoilState(modalEditState)
-
-  console.log(gif.title)
+  const [title, setTitle] = useRecoilState(currentEditTitle)
+  const [description, setDescription] = useRecoilState(currentEditDescription)
 
   const handleCloseClick = useCallback(() => {
     setIsModalOpen(false)
@@ -23,7 +28,8 @@ export function Form() {
           label="Title"
           color="error"
           sx={{ width: '100%' }}
-          defaultValue={gif.title}
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
         />
         <IconButton color="error">
           <Share />
@@ -35,7 +41,8 @@ export function Form() {
         rows={5}
         size="small"
         color="error"
-        defaultValue={gif.description ? gif.description : ''}
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
       />
       <Stack
         direction="row"

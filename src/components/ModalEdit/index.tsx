@@ -34,7 +34,6 @@ export function ModalEdit() {
           maxWidth: '900px',
           width: '100%',
           height: 'fit-content',
-          maxHeight: 'calc( 70vh - 50px )',
           padding: '20px'
         }}
       >
@@ -43,10 +42,19 @@ export function ModalEdit() {
             <S.ProgressContainer>
               <CircularProgress color="error" />
             </S.ProgressContainer>
-            <motion.div animate={control}>
+            <motion.div animate={control} initial={{ zIndex: 2 }}>
               <img src={gif.images.original.webp} alt={gif.title} />
             </motion.div>
-            <span>{gif.username}</span>
+
+            <span>
+              {gif.username !== '' ? (
+                <>
+                  by <b>{gif.username}</b>
+                </>
+              ) : (
+                <b>GIPHY</b>
+              )}
+            </span>
           </S.ImageContainer>
 
           <Form />

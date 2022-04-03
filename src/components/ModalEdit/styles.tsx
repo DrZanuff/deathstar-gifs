@@ -40,13 +40,13 @@ export const ImageContainer = styled.div`
     font-family: Roboto;
     font-weight: 300;
 
-    color: ${({ theme }) => theme.colors.WHITE};
+    color: ${({ theme }) => theme.colors.BG_DARK};
   }
 
   img {
     object-fit: contain;
     max-width: 260px;
-    border-radius: 8px;
+    border-radius: 5px;
     max-height: calc(70vh - 50px);
     z-index: 2;
   }
@@ -59,4 +59,6 @@ export const ProgressContainer = styled.div`
 
   justify-content: center;
   align-items: center;
+
+  z-index: 1;
 `

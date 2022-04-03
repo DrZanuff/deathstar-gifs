@@ -21,12 +21,22 @@ export function SearchBar() {
   const setCurrentSearchText = useSetRecoilState(currentSearchText)
   const [isSearching, setIsSearching] = useState(false)
 
+  const setInifiniteScrollToTop = useCallback(() => {
+    const $inifiniteScroll = document.querySelector(
+      '#inifinite-scroll > .MuiBox-root'
+    )
+    if ($inifiniteScroll) {
+      $inifiniteScroll.scrollTo({ top: 0 })
+    }
+  }, [])
+
   const handleSearch = useCallback(async () => {
     setIsSearching(true)
     setCurrentSearchResults(initialSearchData)
     const response = await getSearch(searchText, offset)
     setCurrentPageState('search')
     setCurrentSearchResults(response.responseObj)
+    setInifiniteScrollToTop()
     setCurrentSearchText(searchText)
     setOffset((prev) => prev + 1)
     setIsSearching(false)
@@ -55,6 +65,11 @@ export function SearchBar() {
           sx={{ width: '100%' }}
           value={searchText}
           onChange={(e) => handleSearchText(e.target.value)}
+          onKeyUp={(e) => {
+            if (e.key === 'Enter') {
+              handleSearch()
+            }
+          }}
         />
         <LoadingButton
           variant="contained"

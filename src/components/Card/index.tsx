@@ -1,6 +1,11 @@
 import { memo, useCallback } from 'react'
 import { useSetRecoilState } from 'recoil'
-import { currentGif, modalEditState } from '../../atoms'
+import {
+  currentGif,
+  modalEditState,
+  currentEditDescription,
+  currentEditTitle
+} from '../../atoms'
 import { ImageListItem, ImageListItemBar, IconButton } from '@mui/material'
 import { FavoriteBorder } from '@mui/icons-material'
 import type { Gif } from '../../api/types'
@@ -14,9 +19,13 @@ interface CardProps {
 function Card({ gif, renderIcon }: CardProps) {
   const setCurrentGif = useSetRecoilState(currentGif)
   const setModalOpen = useSetRecoilState(modalEditState)
+  const setCurrentEditTitle = useSetRecoilState(currentEditTitle)
+  const setCurrentEditDescription = useSetRecoilState(currentEditDescription)
 
   const handleCardClick = useCallback(() => {
     setCurrentGif(gif)
+    setCurrentEditTitle(gif.title)
+    setCurrentEditDescription(gif.description ? gif.description : '')
     setModalOpen(true)
   }, [])
 

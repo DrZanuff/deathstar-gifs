@@ -66,3 +66,13 @@ export const currentGif = atom({
   key: 'currentGif',
   default: initiaGif
 })
+
+export const currentEditTitle = atom({
+  key: 'currentTitle',
+  default: ''
+})
+
+export const currentEditDescription = atom({
+  key: 'currentEditDescription',
+  default: ''
+})
