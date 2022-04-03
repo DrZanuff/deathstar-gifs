@@ -2,9 +2,10 @@ import { memo, useCallback } from 'react'
 import { useSetRecoilState } from 'recoil'
 import {
   currentGif,
-  modalEditState,
+  modalIsOpenState,
   currentEditDescription,
-  currentEditTitle
+  currentEditTitle,
+  modalEditMode
 } from '../../atoms'
 import { ImageListItem, ImageListItemBar, IconButton } from '@mui/material'
 import { FavoriteBorder } from '@mui/icons-material'
@@ -12,20 +13,22 @@ import type { Gif } from '../../api/types'
 import * as S from './styles'
 
 interface CardProps {
-  renderIcon: boolean
+  editMode: boolean
   gif: Gif
 }
 
-function Card({ gif, renderIcon }: CardProps) {
+function Card({ gif, editMode }: CardProps) {
   const setCurrentGif = useSetRecoilState(currentGif)
-  const setModalOpen = useSetRecoilState(modalEditState)
+  const setModalOpen = useSetRecoilState(modalIsOpenState)
   const setCurrentEditTitle = useSetRecoilState(currentEditTitle)
   const setCurrentEditDescription = useSetRecoilState(currentEditDescription)
+  const setModalEditMode = useSetRecoilState(modalEditMode)
 
   const handleCardClick = useCallback(() => {
     setCurrentGif(gif)
     setCurrentEditTitle(gif.title)
     setCurrentEditDescription(gif.description ? gif.description : '')
+    setModalEditMode(editMode === true ? 'edit' : 'save')
     setModalOpen(true)
   }, [])
 
@@ -40,7 +43,7 @@ function Card({ gif, renderIcon }: CardProps) {
           title={gif.title}
           subtitle={gif.username}
           actionIcon={
-            renderIcon === true ? (
+            editMode === true ? (
               <IconButton
                 aria-label={`favorite ${gif.title}`}
                 sx={{ color: '#F44336' }}

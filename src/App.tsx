@@ -1,18 +1,28 @@
 import { useEffect, useCallback } from 'react'
 import { useAnimation, motion } from 'framer-motion'
+import { Toaster } from 'react-hot-toast'
 import { Header } from './components/Header'
 import { InfiniteScroll } from './components/InfiniteScroll'
 import { FavoriteScroll } from './components/FavoritesScroll'
 import { GiphyAttribution } from './components/GiphyAttribution'
 import { ModalEdit } from './components/ModalEdit'
-import { useRecoilValue } from 'recoil'
-import { currentPageState, modalEditState, currentGif } from './atoms'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { currentPageState, modalIsOpenState, favoritesState } from './atoms'
+import { Gif } from './api/types'
 import * as S from './styles/styles'
 
 function App() {
   const currentPage = useRecoilValue(currentPageState)
-  const currentEditingGif = useRecoilValue(currentGif)
-  const isModalOpen = useRecoilValue(modalEditState)
+  const isModalOpen = useRecoilValue(modalIsOpenState)
+  const setFavorites = useSetRecoilState(favoritesState)
+
+  useEffect(() => {
+    const favorites = localStorage.getItem('favorites')
+    if (favorites) {
+      const savedGifs: Record<string, Gif> = JSON.parse(favorites)
+      setFavorites(savedGifs)
+    }
+  }, [])
 
   const control = useAnimation()
 
@@ -35,7 +45,6 @@ function App() {
   }, [control])
 
   useEffect(() => {
-    console.log('CHANGIN', isModalOpen)
     if (isModalOpen) {
       openModal()
     } else {
@@ -63,8 +72,8 @@ function App() {
         >
           <ModalEdit />
         </motion.div>
-        {/* {isModalOpen && <ModalEdit {...currentEditingGif} />} */}
       </S.Body>
+      <Toaster />
     </>
   )
 }

@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react'
 import { Card, TextField } from '@mui/material'
+import { toast } from 'react-hot-toast'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 import {
   querySearchOffset,
@@ -34,6 +35,11 @@ export function SearchBar() {
     setIsSearching(true)
     setCurrentSearchResults(initialSearchData)
     const response = await getSearch(searchText, offset)
+    if (response.error) {
+      toast.error('Something wrong happened...')
+      setIsSearching(false)
+      return
+    }
     setCurrentPageState('search')
     setCurrentSearchResults(response.responseObj)
     setInifiniteScrollToTop()

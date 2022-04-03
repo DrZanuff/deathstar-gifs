@@ -32,8 +32,8 @@ export const currentSearchText = atom({
   default: ''
 })
 
-export const modalEditState = atom({
-  key: 'modalEditState',
+export const modalIsOpenState = atom({
+  key: 'modalIsOpenState',
   default: false
 })
 
@@ -75,4 +75,16 @@ export const currentEditTitle = atom({
 export const currentEditDescription = atom({
   key: 'currentEditDescription',
   default: ''
+})
+
+type EditModes = 'edit' | 'save'
+
+export const modalEditMode = atom({
+  key: 'modalEditMode',
+  default: 'save' as EditModes
+})
+
+export const favoritesState = atom({
+  key: 'favoritesState',
+  default: {} as Record<string, Gif>
 })
