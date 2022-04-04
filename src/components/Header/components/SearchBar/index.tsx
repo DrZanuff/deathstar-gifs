@@ -60,7 +60,7 @@ export function SearchBar() {
   }, [])
 
   return (
-    <S.SearchBarContainer>
+    <S.SearchBarContainer data-testid="search-bar__container">
       <Card
         sx={{
           width: '100%',
@@ -71,6 +71,7 @@ export function SearchBar() {
         }}
       >
         <TextField
+          id="search-bar__textfield"
           size="small"
           color="error"
           placeholder="Search..."
@@ -84,6 +85,7 @@ export function SearchBar() {
           }}
         />
         <LoadingButton
+          id="search-bar__button"
           variant="contained"
           color="secondary"
           sx={{ height: '90%' }}
