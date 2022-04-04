@@ -6,6 +6,8 @@ import { InfiniteScroll } from './components/InfiniteScroll'
 import { FavoriteScroll } from './components/FavoritesScroll'
 import { GiphyAttribution } from './components/GiphyAttribution'
 import { ModalEdit } from './components/ModalEdit'
+import bgDesktop from './media/bg_desk.jpg'
+import bgMobile from './media/bg_mobile.jpg'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { currentPageState, modalIsOpenState, favoritesState } from './atoms'
 import { Gif } from './api/types'
@@ -55,10 +57,10 @@ function App() {
   return (
     <>
       <S.Background isMobile={false}>
-        <img src="/src/media/bg_desk.jpg" alt="" />
+        <img src={bgDesktop} alt="" />
       </S.Background>
       <S.Background isMobile>
-        <img src="/src/media/bg_mobile.jpg" alt="" />
+        <img src={bgMobile} alt="" />
       </S.Background>
       <S.Body>
         <Header />

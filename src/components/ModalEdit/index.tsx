@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import { CircularProgress, Card } from '@mui/material'
 import { useAnimation, motion } from 'framer-motion'
-import type { Gif } from '../../api/types'
 import { useRecoilValue } from 'recoil'
 import { currentGif } from '../../atoms'
 import { Form } from './components/Form'
