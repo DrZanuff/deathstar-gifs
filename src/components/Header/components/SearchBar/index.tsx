@@ -45,7 +45,6 @@ export function SearchBar() {
       toast.error('Sorry, could not find results...')
       return
     }
-    console.log(response)
     setCurrentPageState('search')
     setCurrentSearchResults(response.responseObj)
     setInifiniteScrollToTop()

@@ -23,8 +23,6 @@ export function ModalEdit() {
     }
 
     startAnimations()
-
-    console.log('Animations')
   }, [gif])
 
   return (
