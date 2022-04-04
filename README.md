@@ -17,7 +17,9 @@
 Link de preview da aplicação:
 <a src="https://deathstar-gifs.netlify.app/">https://deathstar-gifs.netlify.app/</a>
 
+<hr>
 Para rodar:
 
 - Docker: baixe o projeto e rode <code>docker-compose up</code>
-- Yarn: baixe o projeto, rode yarn para instalar as dependências e yarn dev para testar o projeto
+- Yarn: baixe o projeto, rode <code>yarn</code> para instalar as dependências
+  e depois <code>yarn dev</code> para testar o projeto
